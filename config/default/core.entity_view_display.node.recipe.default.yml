@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.recipe.body
+    - field.field.node.recipe.field_chef
     - field.field.node.recipe.field_cooking_time
     - field.field.node.recipe.field_cuisine
     - field.field.node.recipe.field_difficulty_level
@@ -94,6 +95,22 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 3
             additional: {  }
+          63ccf6a1-30d9-43fa-9710-677bf043d3ce:
+            uuid: 63ccf6a1-30d9-43fa-9710-677bf043d3ce
+            region: content
+            configuration:
+              id: 'field_block:node:recipe:field_chef'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_label
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 4
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_twocol_section
@@ -172,6 +189,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_chef:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 8
     region: content
   field_cooking_time:
     type: number_integer

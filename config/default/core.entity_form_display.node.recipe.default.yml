@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.recipe.body
+    - field.field.node.recipe.field_chef
     - field.field.node.recipe.field_cooking_time
     - field.field.node.recipe.field_cuisine
     - field.field.node.recipe.field_difficulty_level
@@ -36,6 +37,16 @@ content:
     weight: 2
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_chef:
+    type: entity_reference_autocomplete
+    weight: 27
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_cooking_time:
     type: number

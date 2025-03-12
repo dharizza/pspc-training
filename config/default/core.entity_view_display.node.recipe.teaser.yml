@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.recipe.body
+    - field.field.node.recipe.field_chef
     - field.field.node.recipe.field_cooking_time
     - field.field.node.recipe.field_cuisine
     - field.field.node.recipe.field_difficulty_level
@@ -48,6 +49,7 @@ content:
     weight: 100
     region: content
 hidden:
+  field_chef: true
   field_cooking_time: true
   field_cuisine: true
   field_difficulty_level: true
