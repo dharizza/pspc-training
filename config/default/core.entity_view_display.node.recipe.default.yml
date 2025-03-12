@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.recipe.field_image
     - field.field.node.recipe.field_ingredients
     - field.field.node.recipe.field_media
+    - field.field.node.recipe.field_related_recipes
     - node.type.recipe
   module:
     - layout_builder
@@ -76,6 +77,22 @@ third_party_settings:
                   link: true
                 third_party_settings: {  }
             weight: 2
+            additional: {  }
+          3826dfdd-c96f-435e-a723-866daf939f9f:
+            uuid: 3826dfdd-c96f-435e-a723-866daf939f9f
+            region: content
+            configuration:
+              id: 'field_block:node:recipe:field_related_recipes'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_label
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 3
             additional: {  }
         third_party_settings: {  }
       -
@@ -196,6 +213,14 @@ content:
       link: false
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_related_recipes:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 7
     region: content
   links:
     settings: {  }

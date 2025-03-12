@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.recipe.field_image
     - field.field.node.recipe.field_ingredients
     - field.field.node.recipe.field_media
+    - field.field.node.recipe.field_related_recipes
     - image.style.medium
     - node.type.recipe
   module:
@@ -52,3 +53,4 @@ hidden:
   field_difficulty_level: true
   field_ingredients: true
   field_media: true
+  field_related_recipes: true
