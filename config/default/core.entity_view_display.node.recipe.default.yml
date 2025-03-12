@@ -10,8 +10,106 @@ dependencies:
     - field.field.node.recipe.field_media
     - node.type.recipe
   module:
+    - layout_builder
+    - layout_discovery
     - text
     - user
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: 'Top section'
+          context_mapping: {  }
+        components:
+          71db2918-7047-44e1-b072-edd51a1c59f0:
+            uuid: 71db2918-7047-44e1-b072-edd51a1c59f0
+            region: content
+            configuration:
+              id: 'field_block:node:recipe:body'
+              label: Description
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          label: 'Main content section'
+          context_mapping: {  }
+          column_widths: 67-33
+        components:
+          174106c0-9c0b-42a6-95db-a6cc03292326:
+            uuid: 174106c0-9c0b-42a6-95db-a6cc03292326
+            region: first
+            configuration:
+              id: 'field_block:node:recipe:field_media'
+              label: Media
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_entity_view
+                label: hidden
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          bea71df7-ae0f-401d-8922-99a73717c411:
+            uuid: bea71df7-ae0f-401d-8922-99a73717c411
+            region: second
+            configuration:
+              id: 'field_block:node:recipe:field_ingredients'
+              label: Ingredients
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: string
+                label: above
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          e94cc65f-6555-440c-b1fa-0d986011963e:
+            uuid: e94cc65f-6555-440c-b1fa-0d986011963e
+            region: second
+            configuration:
+              id: 'field_block:node:recipe:field_cooking_time'
+              label: 'Cooking time'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: number_integer
+                label: inline
+                settings:
+                  thousand_separator: ' '
+                  prefix_suffix: true
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+        third_party_settings: {  }
 id: node.recipe.default
 targetEntityType: node
 bundle: recipe
