@@ -7,10 +7,9 @@ dependencies:
     - field.field.node.recipe.field_cooking_time
     - field.field.node.recipe.field_image
     - field.field.node.recipe.field_ingredients
-    - image.style.wide
+    - field.field.node.recipe.field_media
     - node.type.recipe
   module:
-    - image
     - text
     - user
 id: node.recipe.default
@@ -23,27 +22,16 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 101
+    weight: 2
     region: content
   field_cooking_time:
     type: number_integer
-    label: above
+    label: inline
     settings:
-      thousand_separator: ''
+      thousand_separator: ' '
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 102
-    region: content
-  field_image:
-    type: image
-    label: hidden
-    settings:
-      image_link: ''
-      image_style: wide
-      image_loading:
-        attribute: eager
-    third_party_settings: {  }
-    weight: -1
+    weight: 3
     region: content
   field_ingredients:
     type: string
@@ -51,11 +39,21 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 103
+    weight: 4
+    region: content
+  field_media:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 0
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 1
     region: content
-hidden: {  }
+hidden:
+  field_image: true

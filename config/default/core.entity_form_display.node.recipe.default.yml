@@ -7,10 +7,12 @@ dependencies:
     - field.field.node.recipe.field_cooking_time
     - field.field.node.recipe.field_image
     - field.field.node.recipe.field_ingredients
+    - field.field.node.recipe.field_media
     - image.style.thumbnail
     - node.type.recipe
   module:
     - image
+    - media_library
     - path
     - text
 id: node.recipe.default
@@ -56,6 +58,13 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_media:
+    type: media_library_widget
+    weight: 124
+    region: content
+    settings:
+      media_types: {  }
     third_party_settings: {  }
   path:
     type: path

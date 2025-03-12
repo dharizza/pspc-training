@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.recipe.field_cooking_time
     - field.field.node.recipe.field_image
     - field.field.node.recipe.field_ingredients
+    - field.field.node.recipe.field_media
     - image.style.medium
     - node.type.recipe
   module:
@@ -46,3 +47,4 @@ content:
 hidden:
   field_cooking_time: true
   field_ingredients: true
+  field_media: true
