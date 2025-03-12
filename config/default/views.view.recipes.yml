@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.teaser
     - field.storage.node.field_cooking_time
     - node.type.recipe
     - system.menu.main
@@ -229,38 +230,16 @@ display:
           value:
             recipe: recipe
       style:
-        type: table
+        type: default
         options:
           grouping: {  }
           row_class: ''
           default_row_class: true
-          columns:
-            title: title
-            field_cooking_time: field_cooking_time
-          default: '-1'
-          info:
-            title:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_cooking_time:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-          override: true
-          sticky: false
-          summary: ''
-          empty_table: false
-          caption: ''
-          description: ''
       row:
-        type: fields
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: teaser
       query:
         type: views_query
         options:
