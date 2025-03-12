@@ -5,9 +5,12 @@ dependencies:
   config:
     - field.field.node.recipe.body
     - field.field.node.recipe.field_cooking_time
+    - field.field.node.recipe.field_image
     - field.field.node.recipe.field_ingredients
+    - image.style.thumbnail
     - node.type.recipe
   module:
+    - image
     - path
     - text
 id: node.recipe.default
@@ -37,6 +40,14 @@ content:
     region: content
     settings:
       placeholder: ''
+    third_party_settings: {  }
+  field_image:
+    type: image_image
+    weight: 1
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
     third_party_settings: {  }
   field_ingredients:
     type: string_textfield

@@ -6,9 +6,12 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.recipe.body
     - field.field.node.recipe.field_cooking_time
+    - field.field.node.recipe.field_image
     - field.field.node.recipe.field_ingredients
+    - image.style.medium
     - node.type.recipe
   module:
+    - image
     - text
     - user
 id: node.recipe.teaser
@@ -23,6 +26,17 @@ content:
       trim_length: 600
     third_party_settings: {  }
     weight: 101
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: content
+      image_style: medium
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: -1
     region: content
   links:
     settings: {  }

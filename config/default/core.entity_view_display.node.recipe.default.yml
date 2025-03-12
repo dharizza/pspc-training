@@ -5,9 +5,12 @@ dependencies:
   config:
     - field.field.node.recipe.body
     - field.field.node.recipe.field_cooking_time
+    - field.field.node.recipe.field_image
     - field.field.node.recipe.field_ingredients
+    - image.style.wide
     - node.type.recipe
   module:
+    - image
     - text
     - user
 id: node.recipe.default
@@ -30,6 +33,17 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     weight: 102
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: wide
+      image_loading:
+        attribute: eager
+    third_party_settings: {  }
+    weight: -1
     region: content
   field_ingredients:
     type: string
