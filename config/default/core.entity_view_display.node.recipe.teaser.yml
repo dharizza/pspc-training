@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.recipe.body
     - field.field.node.recipe.field_cooking_time
+    - field.field.node.recipe.field_cuisine
     - field.field.node.recipe.field_difficulty_level
     - field.field.node.recipe.field_image
     - field.field.node.recipe.field_ingredients
@@ -47,6 +48,7 @@ content:
     region: content
 hidden:
   field_cooking_time: true
+  field_cuisine: true
   field_difficulty_level: true
   field_ingredients: true
   field_media: true
