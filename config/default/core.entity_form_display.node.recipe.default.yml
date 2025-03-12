@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.recipe.body
     - field.field.node.recipe.field_cooking_time
+    - field.field.node.recipe.field_difficulty_level
     - field.field.node.recipe.field_image
     - field.field.node.recipe.field_ingredients
     - field.field.node.recipe.field_media
@@ -42,6 +43,12 @@ content:
     region: content
     settings:
       placeholder: ''
+    third_party_settings: {  }
+  field_difficulty_level:
+    type: options_select
+    weight: 125
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_image:
     type: image_image

@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.recipe.body
     - field.field.node.recipe.field_cooking_time
+    - field.field.node.recipe.field_difficulty_level
     - field.field.node.recipe.field_image
     - field.field.node.recipe.field_ingredients
     - field.field.node.recipe.field_media
@@ -12,6 +13,7 @@ dependencies:
   module:
     - layout_builder
     - layout_discovery
+    - options
     - text
     - user
 third_party_settings:
@@ -42,6 +44,21 @@ third_party_settings:
                 settings: {  }
                 third_party_settings: {  }
             weight: 0
+            additional: {  }
+          c33c504a-cd09-490b-b710-73d70aa68014:
+            uuid: c33c504a-cd09-490b-b710-73d70aa68014
+            region: content
+            configuration:
+              id: 'field_block:node:recipe:field_difficulty_level'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: list_default
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+            weight: 1
             additional: {  }
         third_party_settings: {  }
       -
@@ -130,6 +147,13 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_difficulty_level:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
     region: content
   field_ingredients:
     type: string
