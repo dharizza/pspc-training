@@ -7,9 +7,11 @@ dependencies:
     - field.storage.node.field_cooking_time
     - node.type.recipe
     - system.menu.main
+    - taxonomy.vocabulary.cuisine
   module:
     - node
     - options
+    - taxonomy
     - user
 id: recipes
 label: Recipes
@@ -190,7 +192,20 @@ display:
       cache:
         type: tag
         options: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: 'Currently there are no results for your search. '
+            format: basic_html
+          tokenize: false
       sorts:
         created:
           id: created
@@ -250,7 +265,7 @@ display:
             operator: field_difficulty_level_value_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: field_difficulty_level_value
+            identifier: difficulty_level
             required: false
             remember: false
             multiple: false
@@ -273,6 +288,54 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
+        field_cuisine_target_id:
+          id: field_cuisine_target_id
+          table: node__field_cuisine
+          field: field_cuisine_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_cuisine_target_id_op
+            label: Cuisine
+            description: ''
+            use_operator: false
+            operator: field_cuisine_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: cuisine
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: cuisine
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
       style:
         type: default
         options:
@@ -293,8 +356,29 @@ display:
           replica: false
           query_tags: {  }
       relationships: {  }
-      header: {  }
-      footer: {  }
+      use_ajax: true
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: true
+          content: 'Displaying @start - @end of @total'
+      footer:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: false
+          content: "We're in the page @current_page from a total of @page_count pages."
       display_extenders: {  }
     cache_metadata:
       max-age: -1
