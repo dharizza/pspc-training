@@ -24,6 +24,7 @@ dependencies:
     - comment
     - media_library
     - path
+    - select2
     - text
 id: node.recipe.default
 targetEntityType: node
@@ -64,14 +65,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_cuisine:
-    type: entity_reference_autocomplete_tags
+    type: select2_entity_reference
     weight: 17
     region: content
     settings:
+      width: 100%
+      autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
-      size: 60
-      placeholder: ''
     third_party_settings: {  }
   field_difficulty_level:
     type: options_buttons
@@ -141,14 +142,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_type:
-    type: entity_reference_autocomplete_tags
+    type: select2_entity_reference
     weight: 18
     region: content
     settings:
+      width: 100%
+      autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
-      size: 60
-      placeholder: ''
     third_party_settings: {  }
   field_videos:
     type: media_library_widget
