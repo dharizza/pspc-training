@@ -1,0 +1,21 @@
+uuid: 0336a13e-7355-47b1-8a9c-5222dd3b76b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_michelin_stars
+    - node.type.chef
+  module:
+    - options
+id: node.chef.field_michelin_stars
+field_name: field_michelin_stars
+entity_type: node
+bundle: chef
+label: 'Michelin stars'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer
