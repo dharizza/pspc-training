@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.chef.body
+    - field.field.node.chef.field_contact_information
     - field.field.node.chef.field_michelin_stars
     - field.field.node.chef.field_picture
     - field.field.node.chef.field_specialty
@@ -31,6 +32,7 @@ content:
     weight: 100
     region: content
 hidden:
+  field_contact_information: true
   field_michelin_stars: true
   field_picture: true
   field_specialty: true

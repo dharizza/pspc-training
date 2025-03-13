@@ -1,0 +1,31 @@
+uuid: 99147101-e4a8-48d1-bf05-1492fa4cee90
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_contact_information
+    - node.type.chef
+    - paragraphs.paragraphs_type.contact_info
+  module:
+    - entity_reference_revisions
+id: node.chef.field_contact_information
+field_name: field_contact_information
+entity_type: node
+bundle: chef
+label: 'Contact information'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      contact_info: contact_info
+    negate: 0
+    target_bundles_drag_drop:
+      contact_info:
+        weight: 2
+        enabled: true
+field_type: entity_reference_revisions
