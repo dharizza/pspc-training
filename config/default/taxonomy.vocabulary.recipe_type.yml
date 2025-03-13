@@ -1,0 +1,9 @@
+uuid: e120c650-f3b7-4d16-aa82-827bfd2664e2
+langcode: en
+status: true
+dependencies: {  }
+name: 'Recipe type'
+vid: recipe_type
+description: 'Examples: breakfast, dinner, dessert, etc.'
+weight: 0
+new_revision: false
