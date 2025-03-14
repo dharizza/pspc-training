@@ -37,6 +37,7 @@ module:
   media_library: 0
   menu_link_content: 0
   menu_ui: 0
+  minimal: 0
   mysql: 0
   node: 0
   options: 0
@@ -55,7 +56,6 @@ module:
   views_ui: 0
   views: 10
   paragraphs: 11
-  minimal: 0
 theme:
   olivero: 0
   claro: 0
