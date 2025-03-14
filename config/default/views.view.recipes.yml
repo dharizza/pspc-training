@@ -231,6 +231,18 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
+              field_specialty_target_id:
+                plugin_id: bef_select2
+                advanced:
+                  sort_options: false
+                  placeholder_text: '- None -'
+                  rewrite:
+                    filter_rewrite_values: ''
+                    filter_rewrite_values_key: false
+                  collapsible: false
+                  collapsible_disable_automatic_open: false
+                  is_secondary: false
+                  hide_label: false
       access:
         type: perm
         options:
@@ -878,6 +890,170 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            recipe: recipe
+        field_difficulty_level_value:
+          id: field_difficulty_level_value
+          table: node__field_difficulty_level
+          field: field_difficulty_level_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: list_field
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_difficulty_level_value_op
+            label: 'Difficulty level'
+            description: ''
+            use_operator: false
+            operator: field_difficulty_level_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: difficulty_level
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+        field_cuisine_target_id:
+          id: field_cuisine_target_id
+          table: node__field_cuisine
+          field: field_cuisine_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_cuisine_target_id_op
+            label: Cuisine
+            description: ''
+            use_operator: false
+            operator: field_cuisine_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: cuisine
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: cuisine
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
+        field_specialty_target_id:
+          id: field_specialty_target_id
+          table: node__field_specialty
+          field: field_specialty_target_id
+          relationship: field_chef
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_specialty_target_id_op
+            label: "Chef's specialty"
+            description: ''
+            use_operator: false
+            operator: field_specialty_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_specialty_target_id
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: cuisine
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
       style:
         type: table
         options:
@@ -919,6 +1095,8 @@ display:
         row: false
         relationships: false
         fields: false
+        filters: false
+        filter_groups: false
       relationships:
         field_chef:
           id: field_chef
