@@ -6,6 +6,7 @@ module:
   admin_toolbar_tools: 0
   announcements_feed: 0
   automated_cron: 0
+  better_exposed_filters: 0
   big_pipe: 0
   block: 0
   block_content: 0
@@ -18,8 +19,10 @@ module:
   datetime: 0
   dblog: 0
   devel: 0
+  devel_generate: 0
   dynamic_page_cache: 0
   editor: 0
+  entity_reference_revisions: 0
   field: 0
   field_ui: 0
   file: 0
@@ -41,6 +44,7 @@ module:
   path: 0
   path_alias: 0
   search: 0
+  select2: 0
   shortcut: 0
   system: 0
   taxonomy: 0
@@ -50,6 +54,7 @@ module:
   user: 0
   views_ui: 0
   views: 10
+  paragraphs: 11
   minimal: 0
 theme:
   olivero: 0

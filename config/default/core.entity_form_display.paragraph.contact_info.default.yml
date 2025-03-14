@@ -1,0 +1,43 @@
+uuid: 4b3224cf-96bb-4852-971e-4efade66ff86
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.contact_info.field_email_address
+    - field.field.paragraph.contact_info.field_personal_website
+    - field.field.paragraph.contact_info.field_social_media_links
+    - paragraphs.paragraphs_type.contact_info
+  module:
+    - link
+id: paragraph.contact_info.default
+targetEntityType: paragraph
+bundle: contact_info
+mode: default
+content:
+  field_email_address:
+    type: email_default
+    weight: 0
+    region: content
+    settings:
+      placeholder: ''
+      size: 60
+    third_party_settings: {  }
+  field_personal_website:
+    type: link_default
+    weight: 1
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_social_media_links:
+    type: link_default
+    weight: 2
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

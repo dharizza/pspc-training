@@ -1,0 +1,117 @@
+uuid: 7b682d92-8339-4424-ab08-f8d1ad86701e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.contact_info.field_email_address
+    - field.field.paragraph.contact_info.field_personal_website
+    - field.field.paragraph.contact_info.field_social_media_links
+    - paragraphs.paragraphs_type.contact_info
+  module:
+    - layout_builder
+    - link
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_threecol_section
+        layout_settings:
+          label: 'Main content'
+          context_mapping: {  }
+          column_widths: 33-34-33
+        components:
+          97951c86-1d2d-4560-bb68-2248aa018d4d:
+            uuid: 97951c86-1d2d-4560-bb68-2248aa018d4d
+            region: first
+            configuration:
+              id: 'field_block:paragraph:contact_info:field_email_address'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: basic_string
+                label: inline
+                settings: {  }
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          e6644eb0-2158-491a-aa24-15fe0dbeea32:
+            uuid: e6644eb0-2158-491a-aa24-15fe0dbeea32
+            region: second
+            configuration:
+              id: 'field_block:paragraph:contact_info:field_personal_website'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: link
+                label: inline
+                settings:
+                  trim_length: 80
+                  url_only: false
+                  url_plain: false
+                  rel: ''
+                  target: ''
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          0d41d7a1-5adc-4128-b12b-24c4e3f7f592:
+            uuid: 0d41d7a1-5adc-4128-b12b-24c4e3f7f592
+            region: third
+            configuration:
+              id: 'field_block:paragraph:contact_info:field_social_media_links'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: link
+                label: inline
+                settings:
+                  trim_length: 80
+                  url_only: false
+                  url_plain: false
+                  rel: ''
+                  target: ''
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+id: paragraph.contact_info.default
+targetEntityType: paragraph
+bundle: contact_info
+mode: default
+content:
+  field_email_address:
+    type: basic_string
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_personal_website:
+    type: link
+    label: inline
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_social_media_links:
+    type: link
+    label: inline
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }
