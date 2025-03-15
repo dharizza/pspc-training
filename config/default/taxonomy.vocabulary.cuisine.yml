@@ -1,0 +1,9 @@
+uuid: 348d66a3-ae98-468c-a1a0-63ff4c52e2ed
+langcode: en
+status: true
+dependencies: {  }
+name: Cuisine
+vid: cuisine
+description: 'For example: thai, mediterranean, italian, etc.'
+weight: 0
+new_revision: false

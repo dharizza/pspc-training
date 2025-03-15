@@ -1,0 +1,28 @@
+uuid: 578615fe-a593-4940-9565-5909e316d5c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_recipes
+    - node.type.recipe
+id: node.recipe.field_related_recipes
+field_name: field_related_recipes
+entity_type: node
+bundle: recipe
+label: 'Related recipes'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      recipe: recipe
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
