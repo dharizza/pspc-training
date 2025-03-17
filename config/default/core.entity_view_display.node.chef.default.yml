@@ -4,9 +4,12 @@ status: true
 dependencies:
   config:
     - field.field.node.chef.body
+    - field.field.node.chef.field_michelin_stars
+    - field.field.node.chef.field_picture
     - field.field.node.chef.field_specialty
     - node.type.chef
   module:
+    - options
     - text
     - user
 id: node.chef.default
@@ -20,6 +23,22 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 101
+    region: content
+  field_michelin_stars:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_picture:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 104
     region: content
   field_specialty:
     type: entity_reference_label

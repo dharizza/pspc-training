@@ -11,7 +11,13 @@ dependencies:
     - field.field.node.recipe.field_image
     - field.field.node.recipe.field_ingredients
     - field.field.node.recipe.field_media
+    - field.field.node.recipe.field_nutrition_info
+    - field.field.node.recipe.field_prep_time
     - field.field.node.recipe.field_related_recipes
+    - field.field.node.recipe.field_servings
+    - field.field.node.recipe.field_steps
+    - field.field.node.recipe.field_type
+    - field.field.node.recipe.field_videos
     - node.type.recipe
   module:
     - media_library
@@ -86,6 +92,21 @@ content:
     settings:
       media_types: {  }
     third_party_settings: {  }
+  field_nutrition_info:
+    type: text_textarea
+    weight: 28
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_prep_time:
+    type: number
+    weight: 31
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
   field_related_recipes:
     type: entity_reference_autocomplete
     weight: 26
@@ -95,6 +116,38 @@ content:
       match_limit: 10
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_servings:
+    type: number
+    weight: 32
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_steps:
+    type: string_textfield
+    weight: 29
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_type:
+    type: entity_reference_autocomplete
+    weight: 33
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_videos:
+    type: media_library_widget
+    weight: 30
+    region: content
+    settings:
+      media_types: {  }
     third_party_settings: {  }
   path:
     type: path
