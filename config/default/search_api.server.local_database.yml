@@ -1,0 +1,15 @@
+uuid: 5e2234bb-2442-4fba-88cc-6e468c820742
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_db
+id: local_database
+name: 'Local database'
+description: ''
+backend: search_api_db
+backend_config:
+  database: 'default:default'
+  min_chars: 1
+  matching: words
+  phrase: bigram
