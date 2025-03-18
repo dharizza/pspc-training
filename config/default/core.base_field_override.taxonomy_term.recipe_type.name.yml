@@ -1,0 +1,18 @@
+uuid: a45a9264-0c3c-44d1-a021-f28f0f49f18b
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.recipe_type
+id: taxonomy_term.recipe_type.name
+field_name: name
+entity_type: taxonomy_term
+bundle: recipe_type
+label: Name
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

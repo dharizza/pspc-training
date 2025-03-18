@@ -1,0 +1,22 @@
+uuid: f7cdb1fb-2e71-4f6d-8485-d15fefce617d
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.chef
+id: node.chef.sticky
+field_name: sticky
+entity_type: node
+bundle: chef
+label: 'Sticky at top of lists'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

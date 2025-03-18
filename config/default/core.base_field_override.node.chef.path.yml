@@ -1,0 +1,20 @@
+uuid: 2f6fd3b1-71fb-4276-8dfb-7927e726d7a1
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.chef
+  module:
+    - path
+id: node.chef.path
+field_name: path
+entity_type: node
+bundle: chef
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

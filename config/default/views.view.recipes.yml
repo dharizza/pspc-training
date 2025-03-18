@@ -1357,7 +1357,7 @@ display:
         block_1: '0'
         block_2: '0'
         block_3: '0'
-      filename: report
+      filename: report.csv
       automatic_download: true
       store_in_public_file_directory: null
       custom_redirect_path: false

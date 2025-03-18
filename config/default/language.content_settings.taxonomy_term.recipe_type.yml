@@ -1,0 +1,18 @@
+uuid: 6469f9f3-5786-486f-bd1d-89f8d79b77b5
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.recipe_type
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: taxonomy_term.recipe_type
+target_entity_type_id: taxonomy_term
+target_bundle: recipe_type
+default_langcode: site_default
+language_alterable: false
