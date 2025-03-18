@@ -12,7 +12,7 @@ bundle: recipe
 label: 'Cooking time'
 description: 'Add the cooking time in <strong>minutes</strong>.'
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
