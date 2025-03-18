@@ -28,6 +28,7 @@
         "drupal/core-recommended": "^10.4",
         "drupal/devel": "^5.3",
         "drupal/paragraphs": "^1.19",
+        "drupal/search_api": "^1.38",
         "drupal/select2": "^2.0",
         "drupal/views_data_export": "^1.5",
         "drush/drush": "^13.3",
