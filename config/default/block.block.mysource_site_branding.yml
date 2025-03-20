@@ -1,0 +1,25 @@
+uuid: 4cc166a5-8043-4076-87d2-357d40cff0d6
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - mysource
+_core:
+  default_config_hash: n_nlgjggHVfQt2H__zvLOKB2YtjPDbQ5tHijF9LE1aM
+id: mysource_site_branding
+theme: mysource
+region: header
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: false
+visibility: {  }
