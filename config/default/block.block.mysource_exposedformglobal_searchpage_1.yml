@@ -1,0 +1,23 @@
+uuid: 3921eed3-8f71-4bd9-a594-3bf554947ab6
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.global_search
+  module:
+    - views
+  theme:
+    - mysource
+id: mysource_exposedformglobal_searchpage_1
+theme: mysource
+region: sidebar
+weight: 0
+provider: null
+plugin: 'views_exposed_filter_block:global_search-page_1'
+settings:
+  id: 'views_exposed_filter_block:global_search-page_1'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+visibility: {  }

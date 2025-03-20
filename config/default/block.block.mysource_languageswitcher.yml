@@ -1,0 +1,20 @@
+uuid: ce29c9f8-2555-43ee-817c-c1dec9d89d24
+langcode: en
+status: true
+dependencies:
+  module:
+    - language
+  theme:
+    - mysource
+id: mysource_languageswitcher
+theme: mysource
+region: primary_menu
+weight: -7
+provider: null
+plugin: 'language_block:language_interface'
+settings:
+  id: 'language_block:language_interface'
+  label: 'Language switcher'
+  label_display: '0'
+  provider: language
+visibility: {  }
