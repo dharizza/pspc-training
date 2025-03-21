@@ -1,0 +1,24 @@
+{%
+  set card_classes = [
+    'card'
+  ]
+%}
+
+<article {{ attributes.addClass(card_classes) }}>
+  <div class="card_image">
+    {{ card_image }}
+  </div>
+
+  {% block headerSlot %}
+    <h2 class="card_title">
+      {{ card_title }}
+    </h2>
+  {% endblock headerSlot %}
+
+  <div class="card_description">
+    {{ card_description }}
+  </div>
+  <div class="card_ctas">
+    {{ card_ctas }}
+  </div>
+</article>
