@@ -1,11 +1,18 @@
 {%
   set card_classes = [
-    'card'
+    'card',
+    'flex',
+    'flex-col',
+    'gap-4',
+    'bg-slate-100',
+    'rounded-xl',
+    'p-4',
+    'font-tilt-neon'
   ]
 %}
 
 <article {{ attributes.addClass(card_classes) }}>
-  <div class="card_image">
+  <div class="card_image [&_img]:w-full">
     {{ card_image }}
   </div>
 
