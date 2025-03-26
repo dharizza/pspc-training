@@ -3,20 +3,8 @@ type: theme
 'base theme': olivero
 version: 1.0.0
 libraries:
-  - mysource/base
-  - mysource/messages
-  - core/normalize
-libraries-extend:
-  user/drupal.user:
-    - mysource/user
-  core/drupal.dropbutton:
-    - mysource/dropbutton
-  core/drupal.dialog:
-    - mysource/dialog
-  file/drupal.file:
-    - mysource/file
-  core/drupal.progress:
-    - mysource/progress
+  - mysource/font
+  - mysource/tailwind
 description: 'This is a custom theme for the PSPC Training site.'
 core_version_requirement: ^10
 generator: 'starterkit_theme:10.4.4'
