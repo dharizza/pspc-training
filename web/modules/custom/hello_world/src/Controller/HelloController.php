@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\hello_world\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\node\Entity\Node;
 
 /**
  * Returns responses for Hello World routes.
@@ -19,6 +20,35 @@ final class HelloController extends ControllerBase {
 
     if ($name) {
       $output = $this->t('Hello @person!', ['@person' => $name]);
+    }
+
+    $build['content'] = [
+      '#type' => 'item',
+      '#markup' => $output,
+    ];
+
+    return $build;
+  }
+
+  /**
+   * Builds the response.
+   */
+  public function helloNameNode($name, $nid): array {
+    $node = Node::load($nid);
+    // Print variables.
+    // ksm($node->getTitle());
+
+    // If node exist let's print the title.
+    if ($node) {
+      $output = $this->t('Hello @person! The title of the node is @title', [
+        '@person' => $name,
+        '@title' => $node->getTitle()
+      ]);
+    } else {
+      $output = $this->t('Hello @person! The node with ID @id does not exist.', [
+        '@person' => $name,
+        '@id' => $nid
+      ]);
     }
 
     $build['content'] = [
