@@ -6,6 +6,8 @@ namespace Drupal\hello_world\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\node\Entity\Node;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
 
 /**
  * Returns responses for Hello World routes.
@@ -46,9 +48,16 @@ final class HelloController extends ControllerBase {
 
     // If node exist let's print the title.
     if ($node) {
+      // Build link manually using Url and Link classes.
+      // $url = Url::fromRoute('entity.node.canonical', ['node' => $nid]);
+      // $link = Link::fromTextAndUrl('node link', $url);
+
+      // Alternative using the node function toLink()
+      $link = $node->toLink();
+
       $output = $this->t('Hello @person! The title of the node is @title', [
         '@person' => $name,
-        '@title' => $node->getTitle()
+        '@title' => $link->toString()
       ]);
     } else {
       $output = $this->t('Hello @person! The node with ID @id does not exist.', [
