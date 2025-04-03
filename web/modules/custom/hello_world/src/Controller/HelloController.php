@@ -37,6 +37,12 @@ final class HelloController extends ControllerBase {
     $node = Node::load($nid);
     // Print variables.
     // ksm($node->getTitle());
+    // ksm($node->title->value);
+    // ksm($node->id());
+    // ksm($node->nid->value);
+    // ksm($node->bundle());
+    // ksm($node->field_specialty->entity->name->value);
+    // ksm($node);
 
     // If node exist let's print the title.
     if ($node) {
