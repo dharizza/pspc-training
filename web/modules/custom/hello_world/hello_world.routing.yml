@@ -5,3 +5,11 @@ hello_world.page:
     _controller: '\Drupal\hello_world\Controller\HelloController::hello'
   requirements:
     _permission: 'access content overview'
+
+hello_world.page_person:
+  path: '/hello/{name}'
+  defaults:
+    _title: 'Hello World - With dynamic name'
+    _controller: '\Drupal\hello_world\Controller\HelloController::hello'
+  requirements:
+    _permission: 'access content overview'
