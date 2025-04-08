@@ -13,8 +13,12 @@ use \Drupal\Core\Form\FormStateInterface;
  * Make the Promotion Options details component open by default in node creation forms.
  */
 function hello_world_form_alter(&$form, FormStateInterface $form_state, $form_id) : void {
-    if ($form_id == 'node_page_form') {
-        // ksm($form);
-        $form['options']['#open'] = TRUE;
-    }
+  $forms_list = [
+    'node_page_form',
+    'node_article_form',
+    'node_chef_form',
+  ];
+  if (in_array($form_id, $forms_list)) {
+    $form['options']['#open'] = TRUE;
+  }
 }
