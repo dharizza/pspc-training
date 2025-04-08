@@ -22,3 +22,18 @@ function hello_world_form_alter(&$form, FormStateInterface $form_state, $form_id
     $form['options']['#open'] = TRUE;
   }
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ * 
+ * Change access permissions for field tags in articles.
+ */
+function hello_world_form_node_article_form_alter(&$form, FormStateInterface $form_state, $form_id) : void {
+  // Use method chaining, avoid creating a variable to hold the service.
+  // $form['field_tags']['#access'] = \Drupal::currentUser()->hasPermission('administer content');
+
+  // Next two lines are equivalent.
+  // $user = \Drupal::service('current_user');
+  $user = \Drupal::currentUser();
+  $form['field_tags']['#access'] = $user->hasPermission('administer content');
+}
