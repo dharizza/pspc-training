@@ -13,8 +13,27 @@ use \Drupal\Core\Form\FormStateInterface;
  * Make the Promotion Options details component open by default in node creation forms.
  */
 function hello_world_form_alter(&$form, FormStateInterface $form_state, $form_id) : void {
-    if ($form_id == 'node_page_form') {
-        // ksm($form);
-        $form['options']['#open'] = TRUE;
-    }
+  $forms_list = [
+    'node_page_form',
+    'node_article_form',
+    'node_chef_form',
+  ];
+  if (in_array($form_id, $forms_list)) {
+    $form['options']['#open'] = TRUE;
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ * 
+ * Change access permissions for field tags in articles.
+ */
+function hello_world_form_node_article_form_alter(&$form, FormStateInterface $form_state, $form_id) : void {
+  // Use method chaining, avoid creating a variable to hold the service.
+  // $form['field_tags']['#access'] = \Drupal::currentUser()->hasPermission('administer content');
+
+  // Next two lines are equivalent.
+  // $user = \Drupal::service('current_user');
+  $user = \Drupal::currentUser();
+  $form['field_tags']['#access'] = $user->hasPermission('administer content');
 }
