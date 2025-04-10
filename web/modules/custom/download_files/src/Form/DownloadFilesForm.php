@@ -1,0 +1,84 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Drupal\download_files\Form;
+
+use Drupal\Core\Form\FormBase;
+use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+
+/**
+ * Provides a Download Files form.
+ */
+final class DownloadFilesForm extends FormBase {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getFormId(): string {
+    return 'download_files_form';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function buildForm(array $form, FormStateInterface $form_state): array {
+    $form['media'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Select a file to download'),
+      '#options' => $this->getFilesOptions(),
+    ];
+
+    $form['actions'] = [
+      '#type' => 'actions',
+      'submit' => [
+        '#type' => 'submit',
+        '#value' => $this->t('Download'),
+      ],
+    ];
+
+    return $form;
+  }
+
+  public function getFilesOptions() {
+    $results = \Drupal::database()
+      ->select('file_managed', 'f')
+      ->fields('f', ['filename', 'uri'])
+      ->execute()
+      ->fetchAll();
+    
+      $options = [];
+      foreach ($results as $file) {
+        $options[$file->uri] = $file->filename;
+      }
+      return $options;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function validateForm(array &$form, FormStateInterface $form_state): void {
+    // @todo Validate the form here.
+    // Example:
+    // @code
+    //   if (mb_strlen($form_state->getValue('message')) < 10) {
+    //     $form_state->setErrorByName(
+    //       'message',
+    //       $this->t('Message should be at least 10 characters.'),
+    //     );
+    //   }
+    // @endcode
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function submitForm(array &$form, FormStateInterface $form_state): void {
+    $uri = $form_state->getValue('media');
+    $response = new BinaryFileResponse($uri);
+    $response->setContentDisposition('attachment');
+    $form_state->setResponse($response);
+  }
+
+}

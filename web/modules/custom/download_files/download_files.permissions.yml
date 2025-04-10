@@ -1,0 +1,4 @@
+download documents:
+  title: 'Download documents'
+  description: 'Allow users to download files'
+  # restrict access: true
