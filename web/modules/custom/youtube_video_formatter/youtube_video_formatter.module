@@ -8,6 +8,8 @@ function youtube_video_formatter_theme($existing, $type, $theme, $path) : array 
     'youtube_video' => [
       'variables' => [
         'video_id' => NULL,
+        'width' => 560,
+        'height' => 315,
       ],
     ],
   ];
