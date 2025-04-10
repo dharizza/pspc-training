@@ -1,0 +1,7 @@
+name: 'Download Files'
+type: module
+description: 'Allows users to download files.'
+package: Custom
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:media
