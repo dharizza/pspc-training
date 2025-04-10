@@ -26,14 +26,7 @@ final class DownloadFilesForm extends FormBase {
     $form['media'] = [
       '#type' => 'select',
       '#title' => $this->t('Select a file to download'),
-      '#options' => [
-          '1' => $this->t('One'),
-          '2' => [
-              '2.1' => $this->t('Two point one'),
-              '2.2' => $this->t('Two point two'),
-          ],
-          '3' => $this->t('Three'),
-      ],
+      '#options' => $this->getFilesOptions(),
     ];
 
     $form['actions'] = [
@@ -45,6 +38,20 @@ final class DownloadFilesForm extends FormBase {
     ];
 
     return $form;
+  }
+
+  public function getFilesOptions() {
+    $results = \Drupal::database()
+      ->select('file_managed', 'f')
+      ->fields('f', ['filename', 'uri'])
+      ->execute()
+      ->fetchAll();
+    
+      $options = [];
+      foreach ($results as $file) {
+        $options[$file->uri] = $file->filename;
+      }
+      return $options;
   }
 
   /**
