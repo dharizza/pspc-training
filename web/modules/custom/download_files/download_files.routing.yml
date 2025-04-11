@@ -5,3 +5,11 @@ download_files.form:
     _form: 'Drupal\download_files\Form\DownloadFilesForm'
   requirements:
     _permission: 'download documents'
+
+download_files.config_form:
+  path: '/admin/config/media/download-files'
+  defaults:
+    _title: 'Download files config'
+    _form: 'Drupal\download_files\Form\DownloadFilesConfigForm'
+  requirements:
+    _permission: 'administer download files form'
