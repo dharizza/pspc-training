@@ -22,10 +22,9 @@ final class DownloadFilesBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build(): array {
-    $build['content'] = [
-      '#markup' => $this->t('It works!'),
-    ];
-    return $build;
+    $form = \Drupal::formBuilder()->getForm('\Drupal\download_files\Form\DownloadFilesForm');
+    $form['#title'] = $this->t('Get your files here!');
+    return $form;
   }
 
 }
