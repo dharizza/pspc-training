@@ -6,6 +6,7 @@ namespace Drupal\download_files\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\file\Entity\File;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
@@ -43,18 +44,32 @@ final class DownloadFilesForm extends FormBase {
 
   public function getFilesOptions() {
     // Get list of files using database abstraction layer.
-    $results = \Drupal::database()
-      ->select('file_managed', 'f')
-      ->fields('f', ['filename', 'uri'])
-      ->orderBy('f.filename', 'ASC')
-      ->execute()
-      ->fetchAll();
+    // $results = \Drupal::database()
+    //   ->select('file_managed', 'f')
+    //   ->fields('f', ['filename', 'uri'])
+    //   ->orderBy('f.filename', 'ASC')
+    //   ->execute()
+    //   ->fetchAll();
     
-      $options = [];
-      foreach ($results as $file) {
-        $options[$file->uri] = $file->filename;
-      }
-      return $options;
+    // $options = [];
+    // foreach ($results as $file) {
+    //   $options[$file->uri] = $file->filename;
+    // }
+
+    // Get list of files using Entity Query.
+    $results = \Drupal::entityQuery('file')
+      ->condition('status', 1)
+      ->accessCheck()
+      ->execute();
+
+    $files = File::loadMultiple($results);
+
+    $options = [];
+    foreach ($files as $file) {
+      // $options[$file->uri->value] = $file->filename->value;
+      $options[$file->getFileUri()] = $file->getFilename();
+    }
+    return $options;
   }
 
   /**
