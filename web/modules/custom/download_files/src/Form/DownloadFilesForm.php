@@ -42,9 +42,11 @@ final class DownloadFilesForm extends FormBase {
   }
 
   public function getFilesOptions() {
+    // Get list of files using database abstraction layer.
     $results = \Drupal::database()
       ->select('file_managed', 'f')
       ->fields('f', ['filename', 'uri'])
+      ->orderBy('f.filename', 'ASC')
       ->execute()
       ->fetchAll();
     
