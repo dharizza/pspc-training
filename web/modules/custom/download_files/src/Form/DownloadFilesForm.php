@@ -31,6 +31,13 @@ final class DownloadFilesForm extends FormBase {
       '#options' => $this->getFilesOptions(),
     ];
 
+    $form['pass_phrase'] = [
+      '#type' => 'email',
+      '#title' => $this->t('Email'),
+      '#description' => $this->t('Enter your email address to retrieve the file.'),
+      '#required' => TRUE,
+    ];
+
     $form['actions'] = [
       '#type' => 'actions',
       'submit' => [
@@ -76,16 +83,12 @@ final class DownloadFilesForm extends FormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state): void {
-    // @todo Validate the form here.
-    // Example:
-    // @code
-    //   if (mb_strlen($form_state->getValue('message')) < 10) {
-    //     $form_state->setErrorByName(
-    //       'message',
-    //       $this->t('Message should be at least 10 characters.'),
-    //     );
-    //   }
-    // @endcode
+    parent::validateForm($form, $form_state);
+    $pass = $form_state->getValue('pass_phrase');
+
+    if (!strpos($pass, '@evolvingweb.com')) {
+      $form_state->setErrorByName('pass_phrase', $this->t('Incorrect email! Try again.'));
+    }
   }
 
   /**
