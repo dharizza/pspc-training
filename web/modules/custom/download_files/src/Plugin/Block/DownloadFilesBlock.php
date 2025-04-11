@@ -7,6 +7,8 @@ namespace Drupal\download_files\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Access\AccessResult;
 
 /**
  * Provides a download files block block.
@@ -25,6 +27,14 @@ final class DownloadFilesBlock extends BlockBase {
     $form = \Drupal::formBuilder()->getForm('\Drupal\download_files\Form\DownloadFilesForm');
     $form['#title'] = $this->t('Get your files here!');
     return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function blockAccess(AccountInterface $account) {
+    $has_access = $account->hasPermission('download documents');
+    return AccessResult::allowedIf($has_access);
   }
 
 }
