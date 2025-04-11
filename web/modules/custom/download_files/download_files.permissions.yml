@@ -2,3 +2,7 @@ download documents:
   title: 'Download documents'
   description: 'Allow users to download files'
   # restrict access: true
+
+administer download files form:
+  title: 'Administer download files form'
+  description: 'Allow users to manage the type of files shown in the download files form.'
