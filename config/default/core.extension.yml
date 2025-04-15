@@ -64,6 +64,7 @@ module:
   user: 0
   views_data_export: 0
   views_ui: 0
+  youtube_video_formatter: 0
   content_translation: 10
   views: 10
   paragraphs: 11
