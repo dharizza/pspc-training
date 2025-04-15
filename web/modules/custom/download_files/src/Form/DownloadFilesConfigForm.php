@@ -30,12 +30,31 @@ final class DownloadFilesConfigForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state): array {
-    $form['example'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Example'),
-      '#default_value' => $this->config('download_files.settings')->get('example'),
+    $config = $this->config('download_files.settings');
+
+    $form['file_types'] = [
+      '#type' => 'checkboxes',
+      '#title' => $this->t('File types to include in the download files form'),
+      '#default_value' => $config->get('file_types') ? $config->get('file_types') : [],
+      '#options' => $this->getFileTypes(),
     ];
     return parent::buildForm($form, $form_state);
+  }
+
+  public function getFileTypes() {
+    $results = \Drupal::database()
+      ->select('file_managed', 'f')
+      ->distinct()
+      ->fields('f', ['filemime'])
+      ->condition('f.status', 1)
+      ->execute()
+      ->fetchAll();
+
+    $types = [];
+    foreach ($results as $type) {
+      $types[$type->filemime] = $type->filemime;
+    }
+    return $types;
   }
 
   /**
@@ -60,7 +79,7 @@ final class DownloadFilesConfigForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     $this->config('download_files.settings')
-      ->set('example', $form_state->getValue('example'))
+      ->set('file_types', $form_state->getValue('file_types'))
       ->save();
     parent::submitForm($form, $form_state);
   }

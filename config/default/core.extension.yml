@@ -14,14 +14,14 @@ module:
   ckeditor5: 0
   comment: 0
   config: 0
+  config_split: 0
   config_translation: 0
   contact: 0
   contextual: 0
   csv_serialization: 0
   datetime: 0
   dblog: 0
-  devel: 0
-  devel_generate: 0
+  download_files: 0
   dynamic_page_cache: 0
   editor: 0
   entity_reference_revisions: 0
@@ -64,6 +64,7 @@ module:
   user: 0
   views_data_export: 0
   views_ui: 0
+  youtube_video_formatter: 0
   content_translation: 10
   views: 10
   paragraphs: 11

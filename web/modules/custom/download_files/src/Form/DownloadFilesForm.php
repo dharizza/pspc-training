@@ -50,6 +50,9 @@ final class DownloadFilesForm extends FormBase {
   }
 
   public function getFilesOptions() {
+    $config = \Drupal::config('download_files.settings');
+    $types = $config->get('file_types');
+
     // Get list of files using database abstraction layer.
     // $results = \Drupal::database()
     //   ->select('file_managed', 'f')
@@ -66,6 +69,7 @@ final class DownloadFilesForm extends FormBase {
     // Get list of files using Entity Query.
     $results = \Drupal::entityQuery('file')
       ->condition('status', 1)
+      ->condition('filemime', $types, 'IN')
       ->accessCheck()
       ->execute();
 
