@@ -1,0 +1,6 @@
+_core:
+  default_config_hash: iUJLVcRyAXgeN2uPfEp0-V0IN52hwDBt4yfK26FjQGY
+file_types:
+  image/gif: image/gif
+  image/jpeg: image/jpeg
+  image/png: image/png
