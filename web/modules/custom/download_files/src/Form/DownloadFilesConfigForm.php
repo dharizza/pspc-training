@@ -79,7 +79,7 @@ final class DownloadFilesConfigForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     $this->config('download_files.settings')
-      ->set('example', $form_state->getValue('example'))
+      ->set('file_types', $form_state->getValue('file_types'))
       ->save();
     parent::submitForm($form, $form_state);
   }
