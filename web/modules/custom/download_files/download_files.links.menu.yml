@@ -1,0 +1,5 @@
+download_files.config_form:
+  title: Download files config
+  parent: system.admin_config_media
+  route_name: download_files.config_form
+  weight: 10

@@ -6,6 +6,7 @@ namespace Drupal\download_files\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\file\Entity\File;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
@@ -30,6 +31,13 @@ final class DownloadFilesForm extends FormBase {
       '#options' => $this->getFilesOptions(),
     ];
 
+    $form['pass_phrase'] = [
+      '#type' => 'email',
+      '#title' => $this->t('Email'),
+      '#description' => $this->t('Enter your email address to retrieve the file.'),
+      '#required' => TRUE,
+    ];
+
     $form['actions'] = [
       '#type' => 'actions',
       'submit' => [
@@ -42,33 +50,45 @@ final class DownloadFilesForm extends FormBase {
   }
 
   public function getFilesOptions() {
-    $results = \Drupal::database()
-      ->select('file_managed', 'f')
-      ->fields('f', ['filename', 'uri'])
-      ->execute()
-      ->fetchAll();
+    // Get list of files using database abstraction layer.
+    // $results = \Drupal::database()
+    //   ->select('file_managed', 'f')
+    //   ->fields('f', ['filename', 'uri'])
+    //   ->orderBy('f.filename', 'ASC')
+    //   ->execute()
+    //   ->fetchAll();
     
-      $options = [];
-      foreach ($results as $file) {
-        $options[$file->uri] = $file->filename;
-      }
-      return $options;
+    // $options = [];
+    // foreach ($results as $file) {
+    //   $options[$file->uri] = $file->filename;
+    // }
+
+    // Get list of files using Entity Query.
+    $results = \Drupal::entityQuery('file')
+      ->condition('status', 1)
+      ->accessCheck()
+      ->execute();
+
+    $files = File::loadMultiple($results);
+
+    $options = [];
+    foreach ($files as $file) {
+      // $options[$file->uri->value] = $file->filename->value;
+      $options[$file->getFileUri()] = $file->getFilename();
+    }
+    return $options;
   }
 
   /**
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state): void {
-    // @todo Validate the form here.
-    // Example:
-    // @code
-    //   if (mb_strlen($form_state->getValue('message')) < 10) {
-    //     $form_state->setErrorByName(
-    //       'message',
-    //       $this->t('Message should be at least 10 characters.'),
-    //     );
-    //   }
-    // @endcode
+    parent::validateForm($form, $form_state);
+    $pass = $form_state->getValue('pass_phrase');
+
+    if (!strpos($pass, '@evolvingweb.com')) {
+      $form_state->setErrorByName('pass_phrase', $this->t('Incorrect email! Try again.'));
+    }
   }
 
   /**
