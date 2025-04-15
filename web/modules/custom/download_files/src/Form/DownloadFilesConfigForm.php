@@ -30,10 +30,16 @@ final class DownloadFilesConfigForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state): array {
-    $form['example'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Example'),
-      '#default_value' => $this->config('download_files.settings')->get('example'),
+    $config = $this->config('download_files.settings');
+
+    $form['file_types'] = [
+      '#type' => 'checkboxes',
+      '#title' => $this->t('File types to include in the download files form'),
+      '#default_value' => $config->get('file_types') ? $config->get('file_types') : [],
+      '#options' => [
+        'image/jpeg' => 'JPG',
+        'application/PDF' => 'PDF',
+      ],
     ];
     return parent::buildForm($form, $form_state);
   }
