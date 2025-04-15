@@ -36,12 +36,25 @@ final class DownloadFilesConfigForm extends ConfigFormBase {
       '#type' => 'checkboxes',
       '#title' => $this->t('File types to include in the download files form'),
       '#default_value' => $config->get('file_types') ? $config->get('file_types') : [],
-      '#options' => [
-        'image/jpeg' => 'JPG',
-        'application/PDF' => 'PDF',
-      ],
+      '#options' => $this->getFileTypes(),
     ];
     return parent::buildForm($form, $form_state);
+  }
+
+  public function getFileTypes() {
+    $results = \Drupal::database()
+      ->select('file_managed', 'f')
+      ->distinct()
+      ->fields('f', ['filemime'])
+      ->condition('f.status', 1)
+      ->execute()
+      ->fetchAll();
+
+    $types = [];
+    foreach ($results as $type) {
+      $types[$type->filemime] = $type->filemime;
+    }
+    return $types;
   }
 
   /**
