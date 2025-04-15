@@ -880,6 +880,8 @@ if (getenv('IS_DDEV_PROJECT') == 'true' && file_exists(__DIR__ . '/settings.ddev
   include __DIR__ . '/settings.ddev.php';
   $config['system.performance']['css']['preprocess'] = false;
   $config['system.performance']['js']['preprocess'] = false;
+
+  $config["config_split.config_split.dev"]["status"] = TRUE;
 }
 
 /**
