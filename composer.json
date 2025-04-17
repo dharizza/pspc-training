@@ -32,6 +32,7 @@
         "drupal/search_api": "^1.38",
         "drupal/select2": "^2.0",
         "drupal/views_data_export": "^1.5",
+        "drupal/webform": "^6.2",
         "drush/drush": "^13.3",
         "npm-asset/chosen": "^0.0.2",
         "npm-asset/select2": "^4.0",
