@@ -22,8 +22,10 @@ final class HelloWorldBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build(): array {
+    $user = \Drupal::service('current_user');
+
     $build['content'] = [
-      '#markup' => $this->t('It works!'),
+      '#markup' => $this->t('Hello @username!', ['@username' => $user->getAccountName()]),
     ];
     return $build;
   }
