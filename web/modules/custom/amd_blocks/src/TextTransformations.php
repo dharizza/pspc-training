@@ -13,6 +13,7 @@ final class TextTransformations {
    * Reverse the text received. Example: text to txet.
    */
   public function reverse($text): string {
+    \Drupal::logger('amd_channel')->warning('The text was reversed.');
     return strrev($text);
   }
 
@@ -20,6 +21,7 @@ final class TextTransformations {
    * Uppercase all the text received. Example: text to TEXT.
    */
   public function uppercase($text): string {
+    \Drupal::logger('amd_channel')->warning('The text was transformed to be uppercase.');
     return strtoupper($text);
   }
 
@@ -27,6 +29,7 @@ final class TextTransformations {
    * Lowercase all the text received. TEXT to text.
    */
   public function lowercase($text): string {
+    \Drupal::logger('amd_channel')->warning('The text was transformed to be lowercase.');
     return strtolower($text);
   }
 
@@ -34,6 +37,7 @@ final class TextTransformations {
    * Title case all the text received. 'Example Text' to 'Example text'.
    */
   public function titleCase($text): string {
+    \Drupal::logger('amd_channel')->warning('The text was transformed to be titlecase.');
     return ucfirst($text);
   }
 
