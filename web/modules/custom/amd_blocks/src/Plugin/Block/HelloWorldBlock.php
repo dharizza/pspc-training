@@ -23,9 +23,10 @@ final class HelloWorldBlock extends BlockBase {
    */
   public function build(): array {
     $user = \Drupal::service('current_user');
+    $text_transformer = \Drupal::service('amd_blocks.text_transformations');
 
     $build['content'] = [
-      '#markup' => $this->t('Hello @username!', ['@username' => $user->getAccountName()]),
+      '#markup' => $this->t('Hello @username!', ['@username' => $text_transformer->titleCase($user->getAccountName())]),
     ];
     return $build;
   }
