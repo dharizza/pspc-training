@@ -27,7 +27,23 @@ final class EntityDeletionSubscriber implements EventSubscriberInterface {
    */
   public function logDeletion(EntityDeleteEvent $event) {
     // Add logic.
-    ksm($event);
+    $deleted_entity = $event->getEntity();
+    ksm($deleted_entity);
+
+    $data = [
+      'label' => $deleted_entity->label(),
+      'deleted' => time(),
+      'deleted_by' => \Drupal::currentUser()->id(),
+      'entity_type' => $deleted_entity->getEntityTypeId(),
+      'entity_bundle' => $deleted_entity->bundle(),
+    ];
+
+    $record = \Drupal::entityTypeManager()->getStorage('deletion_record')->create($data);
+    $record->save();
+
+    // 'created',
+    // 'changed',
+    // 'deleted_entity_author',
   }
 
 }
