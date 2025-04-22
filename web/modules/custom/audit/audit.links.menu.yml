@@ -1,0 +1,11 @@
+entity.deletion_record.settings:
+  title: 'Deletion Record'
+  description: 'Configure a Deletion Record entity type.'
+  route_name:  entity.deletion_record.settings
+  parent: system.admin_structure
+
+entity.deletion_record.collection:
+  title: 'Deletion Records'
+  description: 'List of deletion records.'
+  route_name: entity.deletion_record.collection
+  parent: system.admin_content
