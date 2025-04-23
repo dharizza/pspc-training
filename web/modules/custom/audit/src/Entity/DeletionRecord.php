@@ -45,7 +45,6 @@ use Drupal\user\EntityOwnerTrait;
  *     "id" = "id",
  *     "label" = "label",
  *     "uuid" = "uuid",
- *     "owner" = "uid",
  *   },
  *   links = {
  *     "collection" = "/admin/content/deletion-record",
