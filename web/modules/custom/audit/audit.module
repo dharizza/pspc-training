@@ -36,37 +36,3 @@ function template_preprocess_deletion_record(array &$variables): void {
     $variables['content'][$key] = $variables['elements'][$key];
   }
 }
-
-/**
- * Implements hook_user_cancel().
- */
-function audit_user_cancel($edit, UserInterface $account, $method): void {
-  switch ($method) {
-    case 'user_cancel_reassign':
-      // Anonymize deletion records.
-      $storage = \Drupal::entityTypeManager()->getStorage('deletion_record');
-      $deletion_record_ids = $storage->getQuery()
-        ->condition('uid', $account->id())
-        ->accessCheck(FALSE)
-        ->execute();
-      foreach ($storage->loadMultiple($deletion_record_ids) as $deletion_record) {
-        $deletion_record->setOwnerId(0)->save();
-      }
-      break;
-  }
-}
-
-/**
- * Implements hook_ENTITY_TYPE_predelete() for user entities.
- */
-function audit_user_predelete(UserInterface $account): void {
-  // Delete deletion records that belong to this account.
-  $storage = \Drupal::entityTypeManager()->getStorage('deletion_record');
-  $deletion_record_ids = $storage->getQuery()
-    ->condition('uid', $account->id())
-    ->accessCheck(FALSE)
-    ->execute();
-  $storage->delete(
-    $storage->loadMultiple($deletion_record_ids)
-  );
-}
