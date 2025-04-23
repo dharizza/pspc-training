@@ -7,6 +7,7 @@ namespace Drupal\audit\EventSubscriber;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\core_event_dispatcher\EntityHookEvents;
 use Drupal\core_event_dispatcher\Event\Entity\EntityDeleteEvent;
+use Drupal\Core\Config\Entity\ConfigEntityInterface;
 
 /**
  * @todo Add description for this subscriber.
@@ -29,6 +30,11 @@ final class EntityDeletionSubscriber implements EventSubscriberInterface {
     // Add logic.
     $deleted_entity = $event->getEntity();
     ksm($deleted_entity);
+
+    // Do nothing for config entities.
+    if ($deleted_entity instanceof ConfigEntityInterface) {
+      return ;
+    }
 
     $data = [
       'label' => $deleted_entity->label(),
