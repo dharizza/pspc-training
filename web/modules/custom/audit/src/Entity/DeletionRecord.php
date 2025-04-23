@@ -45,7 +45,6 @@ use Drupal\user\EntityOwnerTrait;
  *     "id" = "id",
  *     "label" = "label",
  *     "uuid" = "uuid",
- *     "owner" = "uid",
  *   },
  *   links = {
  *     "collection" = "/admin/content/deletion-record",
@@ -95,7 +94,7 @@ final class DeletionRecord extends ContentEntityBase implements DeletionRecordIn
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Authored on'))
-      ->setDescription(t('The time that the deletion record was created.'))
+      ->setDescription(t('The time that the entity being deleted was created.'))
       ->setDisplayOptions('view', [
         'label' => 'above',
         'type' => 'timestamp',
@@ -110,7 +109,7 @@ final class DeletionRecord extends ContentEntityBase implements DeletionRecordIn
 
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Changed'))
-      ->setDescription(t('The time that the deletion record was last edited.'));
+      ->setDescription(t('The time that the entity being deleted was last edited.'));
 
     $fields['deleted'] = BaseFieldDefinition::create('timestamp')
       ->setLabel(t('Deleted'))

@@ -7,6 +7,7 @@ namespace Drupal\audit\EventSubscriber;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\core_event_dispatcher\EntityHookEvents;
 use Drupal\core_event_dispatcher\Event\Entity\EntityDeleteEvent;
+use Drupal\Core\Config\Entity\ConfigEntityInterface;
 
 /**
  * @todo Add description for this subscriber.
@@ -28,22 +29,41 @@ final class EntityDeletionSubscriber implements EventSubscriberInterface {
   public function logDeletion(EntityDeleteEvent $event) {
     // Add logic.
     $deleted_entity = $event->getEntity();
-    ksm($deleted_entity);
+    $entity_type = $deleted_entity->getEntityTypeId();
 
+    // Do nothing for config entities.
+    if ($deleted_entity instanceof ConfigEntityInterface) {
+      return ;
+    }
+
+    // Do nothing for path_aliases.
+    if ($entity_type == 'path_alias') {
+      return ;
+    }
+
+    // In all other cases create a DeletionRecord entity.
     $data = [
       'label' => $deleted_entity->label(),
       'deleted' => time(),
       'deleted_by' => \Drupal::currentUser()->id(),
-      'entity_type' => $deleted_entity->getEntityTypeId(),
+      'entity_type' => $entity_type,
       'entity_bundle' => $deleted_entity->bundle(),
     ];
 
+    if (isset($deleted_entity->created)) {
+      $data['created'] = $deleted_entity->created;
+    }
+
+    if (isset($deleted_entity->changed)) {
+      $data['changed'] = $deleted_entity->changed;
+    }
+
+    if (isset($deleted_entity->uid)) {
+      $data['deleted_entity_author'] = $deleted_entity->uid;
+    }
+
     $record = \Drupal::entityTypeManager()->getStorage('deletion_record')->create($data);
     $record->save();
-
-    // 'created',
-    // 'changed',
-    // 'deleted_entity_author',
   }
 
 }
