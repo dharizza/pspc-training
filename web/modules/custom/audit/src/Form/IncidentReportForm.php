@@ -6,6 +6,8 @@ namespace Drupal\audit\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\audit\Event\IncidentReport;
+use Drupal\audit\Event\IncidentReportEvents;
 
 /**
  * Provides a Audit form.
@@ -95,6 +97,17 @@ final class IncidentReportForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
+    // Get the values from the form_state.
+    $reporterName = $form_state->getValue('reporter_name');
+    $reporterEmail = $form_state->getValue('reporter_email');
+    $entity = $form_state->getValue('entity');
+    $report = $form_state->getValue('report');
+
+    // Create instance of the IncidentReport event object.
+    $eventObject = new IncidentReport($reporterName, $reporterEmail, $entity, $report);
+    $event_dispatcher = \Drupal::service('event_dispatcher');
+    $event_dispatcher->dispatch($eventObject, IncidentReportEvents::NEW_INCIDENT);
+
     $this->messenger()->addStatus($this->t('The message has been sent.'));
     $form_state->setRedirect('<front>');
   }
