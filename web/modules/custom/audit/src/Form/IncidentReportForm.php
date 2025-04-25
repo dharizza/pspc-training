@@ -83,16 +83,12 @@ final class IncidentReportForm extends FormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state): void {
-    // @todo Validate the form here.
-    // Example:
-    // @code
-    //   if (mb_strlen($form_state->getValue('message')) < 10) {
-    //     $form_state->setErrorByName(
-    //       'message',
-    //       $this->t('Message should be at least 10 characters.'),
-    //     );
-    //   }
-    // @endcode
+    if (mb_strlen($form_state->getValue('report')) < 16) {
+      $form_state->setErrorByName(
+        'report',
+        $this->t('Message should be at least 15 characters.'),
+      );
+    }
   }
 
   /**
