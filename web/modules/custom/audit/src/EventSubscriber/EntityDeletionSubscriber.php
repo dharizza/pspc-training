@@ -8,6 +8,8 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\core_event_dispatcher\EntityHookEvents;
 use Drupal\core_event_dispatcher\Event\Entity\EntityDeleteEvent;
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
+use Drupal\audit\Event\IncidentReportEvents;
+use Drupal\audit\Event\IncidentReport;
 
 /**
  * @todo Add description for this subscriber.
@@ -20,6 +22,7 @@ final class EntityDeletionSubscriber implements EventSubscriberInterface {
   public static function getSubscribedEvents(): array {
     return [
       EntityHookEvents::ENTITY_DELETE => ['logDeletion'],
+      IncidentReportEvents::NEW_INCIDENT => ['logIncident'],
     ];
   }
 
@@ -64,6 +67,19 @@ final class EntityDeletionSubscriber implements EventSubscriberInterface {
 
     $record = \Drupal::entityTypeManager()->getStorage('deletion_record')->create($data);
     $record->save();
+  }
+
+  /**
+   * If the new incident event is triggered, log it.
+   */
+  public function logIncident(IncidentReport $event) {
+    $name = $event->getReporterName();
+    $email = $event->getReporterEmail();
+    $entity = $event->getDeletedEntity();
+    $report = $event->getReport();
+
+    \Drupal::logger('audit')->alert("New incident reported by " . $name . " (" . $email . ") on entity " . $entity . ". Details: " . $report);
+    $event->stopPropagation();
   }
 
 }
