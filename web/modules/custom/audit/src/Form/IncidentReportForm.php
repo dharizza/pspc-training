@@ -24,7 +24,28 @@ final class IncidentReportForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state): array {
 
-    $form['message'] = [
+    $form['reporter_name'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Reporter name'),
+      '#required' => TRUE,
+      '#description' => $this->t('Type your name here.'),
+    ];
+
+    $form['reporter_email'] = [
+      '#type' => 'email',
+      '#title' => $this->t('Reporter email'),
+      '#required' => TRUE,
+      '#description' => $this->t('Type your email address here.'),
+    ];
+
+    $form['entity'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Select the entity that was deleted incorrectly'),
+      '#required' => TRUE,
+      '#options' => [],
+    ];
+
+    $form['report'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Message'),
       '#required' => TRUE,
