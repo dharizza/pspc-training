@@ -11,6 +11,7 @@ use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\audit\Event\IncidentReportEvents;
 use Drupal\audit\Event\IncidentReport;
 use Drupal\Core\Session\AccountProxy;
+use Drupal\Core\Entity\EntityTypeManager;
 
 /**
  * @todo Add description for this subscriber.
@@ -23,8 +24,16 @@ final class EntityDeletionSubscriber implements EventSubscriberInterface {
    */
   protected AccountProxy $currentUser;
 
-  public function __construct(AccountProxy $currentUser) {
+  /**
+   * Stores the entity_type.manager service.
+   * 
+   * @var Drupal\Core\Entity\EntityTypeManager;
+   */
+  protected EntityTypeManager $entityTypeManager;
+
+  public function __construct(AccountProxy $currentUser, EntityTypeManager $entityTypeManager) {
     $this->currentUser = $currentUser;
+    $this->entityTypeManager = $entityTypeManager;
   }
 
   /**
@@ -76,7 +85,7 @@ final class EntityDeletionSubscriber implements EventSubscriberInterface {
       $data['deleted_entity_author'] = $deleted_entity->uid;
     }
 
-    $record = \Drupal::entityTypeManager()->getStorage('deletion_record')->create($data);
+    $record = $this->entityTypeManager->getStorage('deletion_record')->create($data);
     $record->save();
   }
 
