@@ -12,6 +12,7 @@ use Drupal\audit\Event\IncidentReportEvents;
 use Drupal\audit\Event\IncidentReport;
 use Drupal\Core\Session\AccountProxy;
 use Drupal\Core\Entity\EntityTypeManager;
+use Drupal\Core\Logger\LoggerChannelFactory;
 
 /**
  * @todo Add description for this subscriber.
@@ -31,9 +32,17 @@ final class EntityDeletionSubscriber implements EventSubscriberInterface {
    */
   protected EntityTypeManager $entityTypeManager;
 
-  public function __construct(AccountProxy $currentUser, EntityTypeManager $entityTypeManager) {
+  /**
+   * Stores the logger.factory service.
+   * 
+   * @var Drupal\Core\Logger\LoggerChannelFactory;
+   */
+  protected LoggerChannelFactory $logger;
+
+  public function __construct(AccountProxy $currentUser, EntityTypeManager $entityTypeManager, LoggerChannelFactory $logger) {
     $this->currentUser = $currentUser;
     $this->entityTypeManager = $entityTypeManager;
+    $this->logger = $logger;
   }
 
   /**
@@ -98,7 +107,7 @@ final class EntityDeletionSubscriber implements EventSubscriberInterface {
     $entity = $event->getDeletedEntity();
     $report = $event->getReport();
 
-    \Drupal::logger('audit')->alert("New incident reported by " . $name . " (" . $email . ") on entity " . $entity . ". Details: " . $report);
+    $this->logger->get('audit')->alert("New incident reported by " . $name . " (" . $email . ") on entity " . $entity . ". Details: " . $report);
     $event->stopPropagation();
   }
 
