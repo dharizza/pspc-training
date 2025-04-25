@@ -10,11 +10,22 @@ use Drupal\core_event_dispatcher\Event\Entity\EntityDeleteEvent;
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\audit\Event\IncidentReportEvents;
 use Drupal\audit\Event\IncidentReport;
+use Drupal\Core\Session\AccountProxy;
 
 /**
  * @todo Add description for this subscriber.
  */
 final class EntityDeletionSubscriber implements EventSubscriberInterface {
+  /**
+   * Stores the current_user service.
+   * 
+   * @var Drupal\Core\Session\AccountProxy;
+   */
+  protected AccountProxy $currentUser;
+
+  public function __construct(AccountProxy $currentUser) {
+    $this->currentUser = $currentUser;
+  }
 
   /**
    * {@inheritdoc}
@@ -48,7 +59,7 @@ final class EntityDeletionSubscriber implements EventSubscriberInterface {
     $data = [
       'label' => $deleted_entity->label(),
       'deleted' => time(),
-      'deleted_by' => \Drupal::currentUser()->id(),
+      'deleted_by' => $this->currentUser->id(),
       'entity_type' => $entity_type,
       'entity_bundle' => $deleted_entity->bundle(),
     ];
