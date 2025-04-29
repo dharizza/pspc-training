@@ -8,6 +8,9 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Entity\EntityTypeManager;
 
 /**
  * Provides a deleted entities list block block.
@@ -17,13 +20,28 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
   admin_label: new TranslatableMarkup("Deleted Entities List Block"),
   category: new TranslatableMarkup("Custom"),
 )]
-final class DeletedEntitiesListBlock extends BlockBase {
+final class DeletedEntitiesListBlock extends BlockBase implements ContainerFactoryPluginInterface {
+  protected EntityTypeManager $entityTypeManager;
+
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('entity_type.manager'),
+    );
+  }
+
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManager $entity_type_manager) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->entityTypeManager = $entity_type_manager;
+  }
 
   /**
    * {@inheritdoc}
    */
   public function build(): array {
-    $storage = \Drupal::entityTypeManager()->getStorage('deletion_record');
+    $storage = $this->entityTypeManager->getStorage('deletion_record');
     $query = $storage->getQuery();
     $query->accessCheck(true);
     $query->sort('deleted', 'DESC');
