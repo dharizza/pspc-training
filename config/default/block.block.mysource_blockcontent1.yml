@@ -1,0 +1,25 @@
+uuid: 273871fa-5fe9-47c8-b7cf-78b570474d11
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:39c71026-a901-4f8f-ad1c-dd1ee42a4c95'
+  module:
+    - block_content
+  theme:
+    - mysource
+id: mysource_blockcontent1
+theme: mysource
+region: sidebar
+weight: 0
+provider: null
+plugin: 'block_content:39c71026-a901-4f8f-ad1c-dd1ee42a4c95'
+settings:
+  id: 'block_content:39c71026-a901-4f8f-ad1c-dd1ee42a4c95'
+  label: 'Block content #1'
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

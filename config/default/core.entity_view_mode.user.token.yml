@@ -1,0 +1,11 @@
+uuid: d480dd58-e48b-4282-adbc-ec9942a5d330
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.token
+label: Token
+description: ''
+targetEntityType: user
+cache: true
