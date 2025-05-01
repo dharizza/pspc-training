@@ -1,0 +1,8 @@
+uuid: 5f8dc82c-4810-483a-bc3b-90941b9dcbbf
+langcode: en
+status: true
+dependencies: {  }
+id: node__recipe
+label: 'Content: Recipe'
+tags:
+  keywords: '[node:field_cuisine] [node:field_difficulty_level:value]'

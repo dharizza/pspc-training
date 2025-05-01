@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.recipe.field_image
     - field.field.node.recipe.field_ingredients
     - field.field.node.recipe.field_media
+    - field.field.node.recipe.field_metatags
     - field.field.node.recipe.field_nutrition_info
     - field.field.node.recipe.field_prep_time
     - field.field.node.recipe.field_related_recipes
@@ -23,6 +24,7 @@ dependencies:
   module:
     - comment
     - media_library
+    - metatag
     - path
     - select2
     - text
@@ -94,6 +96,14 @@ content:
     region: content
     settings:
       media_types: {  }
+    third_party_settings: {  }
+  field_metatags:
+    type: metatag_firehose
+    weight: 26
+    region: content
+    settings:
+      sidebar: true
+      use_details: true
     third_party_settings: {  }
   field_nutrition_info:
     type: text_textarea

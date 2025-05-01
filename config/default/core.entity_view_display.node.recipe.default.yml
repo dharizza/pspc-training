@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.recipe.field_image
     - field.field.node.recipe.field_ingredients
     - field.field.node.recipe.field_media
+    - field.field.node.recipe.field_metatags
     - field.field.node.recipe.field_nutrition_info
     - field.field.node.recipe.field_prep_time
     - field.field.node.recipe.field_related_recipes
@@ -25,6 +26,7 @@ dependencies:
     - comment
     - layout_builder
     - layout_discovery
+    - metatag
     - options
     - text
     - user
@@ -88,6 +90,21 @@ third_party_settings:
                 settings: {  }
                 third_party_settings: {  }
             weight: 6
+            additional: {  }
+          a7d88e0e-962c-41b4-957f-66b4156c0ff6:
+            uuid: a7d88e0e-962c-41b4-957f-66b4156c0ff6
+            region: content
+            configuration:
+              id: 'field_block:node:recipe:field_metatags'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: metatag_empty_formatter
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+            weight: 8
             additional: {  }
         third_party_settings: {  }
       -
@@ -390,6 +407,13 @@ content:
       link: false
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_metatags:
+    type: metatag_empty_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 16
     region: content
   field_nutrition_info:
     type: text_default
