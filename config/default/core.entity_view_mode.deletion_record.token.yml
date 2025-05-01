@@ -1,0 +1,11 @@
+uuid: ccd9e046-cf07-4e87-9fda-131c2b5d905d
+langcode: en
+status: true
+dependencies:
+  module:
+    - audit
+id: deletion_record.token
+label: Token
+description: ''
+targetEntityType: deletion_record
+cache: true
