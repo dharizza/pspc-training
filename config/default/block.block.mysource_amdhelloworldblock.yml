@@ -1,0 +1,20 @@
+uuid: 00452e59-8573-490d-8acb-c4cccf4ae1aa
+langcode: en
+status: true
+dependencies:
+  module:
+    - amd_blocks
+  theme:
+    - mysource
+id: mysource_amdhelloworldblock
+theme: mysource
+region: sidebar
+weight: 0
+provider: null
+plugin: amd_blocks_hello_world
+settings:
+  id: amd_blocks_hello_world
+  label: 'AMD Hello World Block'
+  label_display: visible
+  provider: amd_blocks
+visibility: {  }

@@ -1,0 +1,20 @@
+uuid: 4909a0ad-b391-4bbb-a117-ef890d97d477
+langcode: en
+status: true
+dependencies:
+  module:
+    - audit
+  theme:
+    - mysource
+id: mysource_deletedentitieslistblock
+theme: mysource
+region: sidebar
+weight: 0
+provider: null
+plugin: audit_deleted_entities_list_block
+settings:
+  id: audit_deleted_entities_list_block
+  label: 'Deleted Entities List Block'
+  label_display: '0'
+  provider: audit
+visibility: {  }
